@@ -1,0 +1,28 @@
+name: Code Standards
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  code-standard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Flake8
+        run: pip install flake8
+
+      - name: Revisar estándares de código
+        run: flake8 test.py
+
+      - name: Ejecutar código
+        run: python test.py
